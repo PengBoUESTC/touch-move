@@ -6,7 +6,7 @@ export default defineConfig({
   input: 'lib/index.ts',
   output: {
     dir: 'dist',
-    format: 'cjs',
+    format: 'es',
     chunkFileNames: '[name].js'
   },
 

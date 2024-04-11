@@ -1,5 +1,3 @@
-'use strict';
-
 function bindMove(el, bound) {
     Object.assign({
         top: 70, right: 20, bottom: 50, left: 20
@@ -35,4 +33,4 @@ function bindMove(el, bound) {
     });
 }
 
-module.exports = bindMove;
+export { bindMove as default };
