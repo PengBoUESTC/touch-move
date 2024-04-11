@@ -1,7 +1,7 @@
 {
   "name": "touch-move",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "Make elements draggable",
   "main": "dist/index.js",
   "bin":{},
   "directories": {
@@ -19,6 +19,11 @@
   "license": "ISC",
   "dependencies": {
     "release-pkg": "^1.1.2"
+  },
+  "homepage": "https://github.com/PengBoUESTC/touch-move",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PengBoUESTC/touch-move"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^9.0.2",
