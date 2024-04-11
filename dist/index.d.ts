@@ -1,1 +1,2 @@
-export default function bindMove(el: HTMLElement, bound: Partial<Record<'top' | 'right' | 'bottom' | 'left', number>>): void;
+export type Bound = Record<'top' | 'right' | 'bottom' | 'left', number>;
+export default function bindMove(el: HTMLElement, boundInfo: Partial<Bound>): void;

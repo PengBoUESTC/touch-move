@@ -1,7 +1,7 @@
-function bindMove(el, bound) {
-    Object.assign({
+function bindMove(el, boundInfo) {
+    const bound = Object.assign({
         top: 70, right: 20, bottom: 50, left: 20
-    }, bound);
+    }, boundInfo);
     el.style.position = 'fixed';
     let startPos = {};
     el.addEventListener('touchstart', e => {

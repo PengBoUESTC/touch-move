@@ -1,12 +1,14 @@
+
+export type Bound = Record<'top' | 'right' | 'bottom' | 'left', number>
 /**
  * 
  * @param el HTMLElement
  * @param bound number[] => [top, right, bottom, left], drag bound value
  */
-export default function bindMove(el: HTMLElement, bound: Partial<Record<'top' | 'right' | 'bottom' | 'left', number>>) {
-  Object.assign({
+export default function bindMove(el: HTMLElement, boundInfo: Partial<Bound>) {
+  const bound: Bound = Object.assign({
     top: 70, right: 20, bottom: 50, left: 20
-  }, bound)
+  }, boundInfo)
   el.style.position = 'fixed';
   let startPos = {} as { diffLeft: number; diffRight: number; diffTop: number; diffBottom: number };
 
