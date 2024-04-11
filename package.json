@@ -1,6 +1,6 @@
 {
-  "name": "touch-move",
-  "version": "0.0.4",
+  "name": "touch-move-script",
+  "version": "0.0.5",
   "description": "Make elements draggable",
   "main": "dist/index.js",
   "bin": {},
