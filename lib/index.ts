@@ -3,7 +3,7 @@
  * @param el HTMLElement
  * @param bound number[] => [top, right, bottom, left], drag bound value
  */
-export default function bindMove(el: HTMLElement, bound: Record<'top' | 'right' | 'bottom' | 'left', number>) {
+export default function bindMove(el: HTMLElement, bound: Partial<Record<'top' | 'right' | 'bottom' | 'left', number>>) {
   Object.assign({
     top: 70, right: 20, bottom: 50, left: 20
   }, bound)
