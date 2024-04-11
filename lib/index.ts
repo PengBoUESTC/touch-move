@@ -3,7 +3,10 @@
  * @param el HTMLElement
  * @param bound number[] => [top, right, bottom, left], drag bound value
  */
-export default function bindMove(el: HTMLElement, bound: number[]) {
+export default function bindMove(el: HTMLElement, bound: Record<'top' | 'right' | 'bottom' | 'left', number>) {
+  Object.assign({
+    top: 70, right: 20, bottom: 50, left: 20
+  }, bound)
   el.style.position = 'fixed';
   let startPos = {} as { diffLeft: number; diffRight: number; diffTop: number; diffBottom: number };
 
@@ -25,7 +28,7 @@ export default function bindMove(el: HTMLElement, bound: number[]) {
     e.preventDefault();
     const { clientHeight, clientWidth } = document.documentElement;
     const { clientHeight: h } = el;
-    const [top, right, bottom, left] = [70, 20, 100, 40];
+    const { top, right, bottom, left } = bound;
     const { clientY, clientX } = e.touches[0];
 
     const { diffTop, diffLeft } = startPos;
