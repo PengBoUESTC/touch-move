@@ -1,3 +1,7 @@
+## [0.1.1](https://github.com/PengBoUESTC/touch-move/compare/v0.1.0...v0.1.1) (2024-04-23)
+
+
+
 # [0.1.0](https://github.com/PengBoUESTC/touch-move/compare/v0.0.8...v0.1.0) (2024-04-11)
 
 
