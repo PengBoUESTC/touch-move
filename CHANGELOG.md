@@ -1,3 +1,17 @@
+## [0.1.3](https://github.com/PengBoUESTC/touch-move/compare/v0.1.2...v0.1.3) (2024-05-15)
+
+
+### Bug Fixes
+
+* function name ([e8af43c](https://github.com/PengBoUESTC/touch-move/commit/e8af43cae0e8e10b2cf821f1915352263245d20a))
+
+
+### Features
+
+* support matchMedia ([b48aaee](https://github.com/PengBoUESTC/touch-move/commit/b48aaee765a0c47c65143b91611a62805ff8e2cc))
+
+
+
 ## [0.1.2](https://github.com/PengBoUESTC/touch-move/compare/v0.1.1...v0.1.2) (2024-05-15)
 
 
