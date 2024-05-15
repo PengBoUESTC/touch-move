@@ -1,3 +1,12 @@
+## [0.1.2](https://github.com/PengBoUESTC/touch-move/compare/v0.1.1...v0.1.2) (2024-05-15)
+
+
+### Features
+
+* support for pc drag ([f8050f8](https://github.com/PengBoUESTC/touch-move/commit/f8050f850bc97192c824398bca1c5e3080c56775))
+
+
+
 ## [0.1.1](https://github.com/PengBoUESTC/touch-move/compare/v0.1.0...v0.1.1) (2024-04-23)
 
 
