@@ -121,7 +121,7 @@ export function bindTouch(el: HTMLElement, boundInfo: Partial<Bound>) {
 export default function bindMove(el: HTMLElement, boundInfo: Partial<Bound>) {
   // 使用 CSS 媒体查询和 window.matchMedia 来检测设备是否支持触摸：
   if (window.matchMedia('(pointer: coarse)').matches) {
-    return bindMove(el, boundInfo)
+    return bindTouch(el, boundInfo)
   }
   return bindDrag(el, boundInfo)
 }
