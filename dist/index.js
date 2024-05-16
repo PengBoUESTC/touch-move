@@ -11,7 +11,7 @@ function bindDrag(el, boundInfo) {
   el.style.position = 'fixed'
   el.draggable = true
   let startPos = {}
-  el.addEventListener('dragstart', (e) => {
+  const dragStartHandler = (e) => {
     const { left, top } = el.getBoundingClientRect()
     const offsetX = e.clientX - left
     const offsetY = e.clientY - top
@@ -23,11 +23,13 @@ function bindDrag(el, boundInfo) {
       startX: offsetX,
       startY: offsetY,
     }
-  })
-  document.addEventListener('dragover', function (event) {
+  }
+  el.addEventListener('dragstart', dragStartHandler)
+  const dragOverHandler = (event) => {
     event.preventDefault()
-  })
-  el.addEventListener('dragend', (e) => {
+  }
+  document.addEventListener('dragover', dragOverHandler)
+  const dragEndHandler = (e) => {
     e.stopPropagation()
     e.preventDefault()
     const { clientHeight, clientWidth } = document.documentElement
@@ -46,7 +48,18 @@ function bindDrag(el, boundInfo) {
       startX: nextX,
       startY: nextY,
     }
-  })
+  }
+  el.addEventListener('dragend', dragEndHandler)
+  const remvoeDragStart = () =>
+    el.removeEventListener('dragstart', dragStartHandler)
+  const removeDragOver = () =>
+    document.removeEventListener('dragover', dragOverHandler)
+  const removeDragEnd = () => el.removeEventListener('dragend', dragEndHandler)
+  return {
+    remvoeDragStart,
+    removeDragOver,
+    removeDragEnd,
+  }
 }
 function bindTouch(el, boundInfo) {
   const bound = Object.assign(
@@ -60,7 +73,7 @@ function bindTouch(el, boundInfo) {
   )
   el.style.position = 'fixed'
   let startPos = {}
-  el.addEventListener('touchstart', (e) => {
+  const touchStartHandler = (e) => {
     const { clientY, clientX } = e.touches[0]
     const curBound = el.getBoundingClientRect()
     startPos = {
@@ -69,8 +82,9 @@ function bindTouch(el, boundInfo) {
       diffTop: clientY - curBound.top,
       diffBottom: clientY - curBound.bottom,
     }
-  })
-  el.addEventListener('touchmove', (e) => {
+  }
+  el.addEventListener('touchstart', touchStartHandler)
+  const touchMoveHandler = (e) => {
     e.stopPropagation()
     e.preventDefault()
     const { clientHeight, clientWidth } = document.documentElement
@@ -87,7 +101,16 @@ function bindTouch(el, boundInfo) {
     nextPos = nextPos > clientWidth - left ? clientWidth - left : nextPos
     nextPos = nextPos < right ? right : nextPos
     el.style.left = `${nextPos}px`
-  })
+  }
+  el.addEventListener('touchmove', touchMoveHandler)
+  const removeTouchStart = () =>
+    el.removeEventListener('touchstart', touchStartHandler)
+  const removeTouchMove = () =>
+    el.removeEventListener('touchmove', touchMoveHandler)
+  return {
+    removeTouchStart,
+    removeTouchMove,
+  }
 }
 function bindMove(el, boundInfo) {
   if (window.matchMedia('(pointer: coarse)').matches) {

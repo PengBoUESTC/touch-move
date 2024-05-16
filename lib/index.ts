@@ -13,7 +13,8 @@ export function bindDrag(el: HTMLElement, boundInfo: Partial<Bound>) {
   el.style.position = 'fixed'
   el.draggable = true
   let startPos = {} as { startX: number; startY: number }
-  el.addEventListener('dragstart', (e: DragEvent) => {
+
+  const dragStartHandler = (e: DragEvent) => {
     // 计算鼠标指针相对于元素左上角的偏移量
     const { left, top } = el.getBoundingClientRect()
     const offsetX = e.clientX - left
@@ -29,12 +30,15 @@ export function bindDrag(el: HTMLElement, boundInfo: Partial<Bound>) {
       startX: offsetX,
       startY: offsetY,
     }
-  })
-  document.addEventListener('dragover', function (event) {
+  }
+  el.addEventListener('dragstart', dragStartHandler)
+
+  const dragOverHandler = (event: DragEvent) => {
     // 阻止默认行为以允许放置
     event.preventDefault()
-  })
-  el.addEventListener('dragend', (e) => {
+  }
+  document.addEventListener('dragover', dragOverHandler)
+  const dragEndHandler = (e: DragEvent) => {
     e.stopPropagation()
     e.preventDefault()
     const { clientHeight, clientWidth } = document.documentElement
@@ -56,7 +60,21 @@ export function bindDrag(el: HTMLElement, boundInfo: Partial<Bound>) {
       startX: nextX,
       startY: nextY,
     }
-  })
+  }
+  el.addEventListener('dragend', dragEndHandler)
+
+  // remove event
+  const remvoeDragStart = () =>
+    el.removeEventListener('dragstart', dragStartHandler)
+  const removeDragOver = () =>
+    document.removeEventListener('dragover', dragOverHandler)
+  const removeDragEnd = () => el.removeEventListener('dragend', dragEndHandler)
+
+  return {
+    remvoeDragStart,
+    removeDragOver,
+    removeDragEnd,
+  }
 }
 
 export function bindTouch(el: HTMLElement, boundInfo: Partial<Bound>) {
@@ -77,7 +95,7 @@ export function bindTouch(el: HTMLElement, boundInfo: Partial<Bound>) {
     diffBottom: number
   }
 
-  el.addEventListener('touchstart', (e) => {
+  const touchStartHandler = (e: TouchEvent) => {
     const { clientY, clientX } = e.touches[0]
     const curBound = el.getBoundingClientRect()
 
@@ -87,10 +105,10 @@ export function bindTouch(el: HTMLElement, boundInfo: Partial<Bound>) {
       diffTop: clientY - curBound.top,
       diffBottom: clientY - curBound.bottom,
     }
-  })
+  }
+  el.addEventListener('touchstart', touchStartHandler)
 
-  // 为 el 添加事件
-  el.addEventListener('touchmove', (e) => {
+  const touchMoveHandler = (e: TouchEvent) => {
     e.stopPropagation()
     e.preventDefault()
     const { clientHeight, clientWidth } = document.documentElement
@@ -110,7 +128,19 @@ export function bindTouch(el: HTMLElement, boundInfo: Partial<Bound>) {
     nextPos = nextPos > clientWidth - left ? clientWidth - left : nextPos
     nextPos = nextPos < right ? right : nextPos
     el.style.left = `${nextPos}px`
-  })
+  }
+  // 为 el 添加事件
+  el.addEventListener('touchmove', touchMoveHandler)
+  // remove event
+  const removeTouchStart = () =>
+    el.removeEventListener('touchstart', touchStartHandler)
+  const removeTouchMove = () =>
+    el.removeEventListener('touchmove', touchMoveHandler)
+
+  return {
+    removeTouchStart,
+    removeTouchMove,
+  }
 }
 
 /**
