@@ -1,3 +1,12 @@
+## [0.1.4](https://github.com/PengBoUESTC/touch-move/compare/v0.1.3...v0.1.4) (2024-05-16)
+
+
+### Features
+
+* support remvoe event ([196da2a](https://github.com/PengBoUESTC/touch-move/commit/196da2a31e0c9fc9be68736ceb4240c4cd5b3790))
+
+
+
 ## [0.1.3](https://github.com/PengBoUESTC/touch-move/compare/v0.1.2...v0.1.3) (2024-05-15)
 
 
